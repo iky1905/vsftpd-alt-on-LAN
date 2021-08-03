@@ -17,9 +17,7 @@
 > 
 > 原文链接：https://blog.csdn.net/qq_15127715/article/details/69055099
  - 为了实现这两个功能，需要修改相关设置。但luci并没有提供这些选项，所以只能手动修改相关配置文件<br>
-  `N1的Openwrt使用vsftpd-alt，配合luci-app-vsftpd，运行时仍然为vsftpd进程，与一般的vsftpd一致。每当vsftpd服务重启，会在/var/run/vsftpd路径下生成vsftpd.conf文件，该文件语法与一般的vsftpd相同；`
-
-  luci网页端的设置依靠Openwrt内置的lua语句模块，在/etc/config/vsftpd下生效，这里的设置只针对luci服务，擅自添加luci中没有的变量将不会生效
-
-  自行添加参数需要修改/usr/sbin/vsftpd_prepare文件，仿照已有语句的语法编写即可
+  `N1的Openwrt使用vsftpd-alt，配合luci-app-vsftpd，运行时仍然为vsftpd进程，与一般的vsftpd一致。每当vsftpd服务重启，会在/var/run/vsftpd路径下生成vsftpd.conf文件，该文件语法与一般的vsftpd相同；<br>
+luci网页端的设置依靠Openwrt内置的lua语句模块，在/etc/config/vsftpd下生效，这里的设置只针对luci服务，擅自添加luci中没有的变量将不会生效<br>
+自行添加参数需要修改/usr/sbin/vsftpd_prepare文件，仿照已有语句的语法编写即可`
 
