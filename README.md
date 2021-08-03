@@ -28,7 +28,8 @@
 
     output_field listen pasv_address "pasv_address" "(WAN ip address on AC2100)"
     output_const "pasv_promiscuous" YES
-!(https://raw.githubusercontent.com/iky1905/vsftpd-alt-on-LAN/main/%E6%8D%95%E8%8E%B7.PNG?token=AOOIP6N6AM737WY622I7XXTBBFAJ6)
+
+    !(https://raw.githubusercontent.com/iky1905/vsftpd-alt-on-LAN/main/%E6%8D%95%E8%8E%B7.PNG?token=AOOIP6N6AM737WY622I7XXTBBFAJ6)
  - 每更换一次网络环境，AC2100的WAN地址就不一样，尤其是在校园网更换为PPPoE模式后，该地址更是不能保持固定，为了不用重复配置，最好的方法是编写一个脚本，能够让N1获取AC2100的WAN地址，并将其写入相应的配置文件中，这样就避免了每更换一次WAN地址就要修改一次配置的问题。一个可能的思路如下：
 > 1. 在AC2100上运行脚本，每拨号成功，就将WAN地址写到一个文件里吗，这可以使用ifconfig eth0.1(在当前使用的固件中，该网卡代表路由器的WAN网卡)配合正则表达式完成，最终获取ip地址的字符串
 > 2. 在N1上运行脚本，以SCP协议从AC2100下载包含WAN地址的文件到N1上。但目前遇到了问题，**SCP协议是基于ssh的，在首次连接是需要确认相应的指纹，这就要求N1能够回应“是否接受该指纹”的请求，一般的命令行并不能这么做；如果该脚本在N1开机后执行，由于该执行主体并没有接受过该指纹，于是这个动作就被中断了，但如果在开机后在ssh的命令行输入同样的代码，并且此前认为确认过该指纹，那么命令将会正常执行，从AC2100获取该文件**
