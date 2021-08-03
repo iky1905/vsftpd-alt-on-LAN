@@ -26,5 +26,5 @@
 
 总体来说，需要在/usr/sbin/vsftpd_prepare文件的`# listen`块增加如下代码：
 
-    output_field lis ten pasv_address "pasv_address" "(WAN ip address on AC2100)"
+    output_field listen pasv_address "pasv_address" "(WAN ip address on AC2100)"
     output_const "pasv_promiscuous" YES
