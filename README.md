@@ -24,3 +24,7 @@
 > 
 > 自行添加参数需要修改/usr/sbin/vsftpd_prepare文件，仿照已有语句的语法编写即可
 
+总体来说，需要在/usr/sbin/vsftpd_prepare文件的`# listen`块增加如下代码：
+
+    output_field lis ten pasv_address "pasv_address" "(WAN ip address on AC2100)"
+    output_const "pasv_promiscuous" YES
